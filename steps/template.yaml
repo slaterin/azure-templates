@@ -1,5 +1,6 @@
 parameters:
   - name: overrideAction
+    default: plan
     values:
       - plan
       - apply
