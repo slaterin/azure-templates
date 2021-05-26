@@ -3,11 +3,7 @@ steps:
   - checkout: azure-templates
 
   - task: Bash@3
-    condition: |
-      or(
-      and(succeeded(), eq(variables['isMain'], true), eq('${{ parameters.overrideAction }}', 'apply')),
-      and(succeeded(), eq(variables['isMain'], true), eq(variables['isAutoTriggered'], true))
-      )  
+    condition: and(succeeded(), eq(variables['isMain'], true))
     displayName: Terraform install (tfenv)
     inputs:
       script: echo hello
