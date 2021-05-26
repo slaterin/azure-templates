@@ -1,10 +1,10 @@
-parameters:
-  - name: overrideAction
-    default: plan
-    values:
-      - plan
-      - apply
-      - destroy
+# parameters:
+#   - name: overrideAction
+#     default: plan
+#     values:
+#       - plan
+#       - apply
+#       - destroy
       
 steps:
   - checkout: self
