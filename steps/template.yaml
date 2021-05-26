@@ -3,11 +3,12 @@ steps:
   - checkout: azure-templates
 
   - task: Bash@3
-    targetType: inline
     condition: |
       or(
       and(succeeded(), eq(variables['isMain'], true), eq('${{ parameters.overrideAction }}', 'apply')),
       and(succeeded(), eq(variables['isMain'], true), eq(variables['isAutoTriggered'], true))
       )  
     displayName: Terraform install (tfenv)
-    script: echo hello
+    inputs:
+      script: echo hello
+      targetType: inline
