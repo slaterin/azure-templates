@@ -1,9 +1,23 @@
+parameters:
+  - name: overrideAction
+    default: plan
+    values:
+      - plan
+      - apply
+      - destroy
+      
 steps:
   - checkout: self
   - checkout: azure-templates
 
   - task: Bash@3
-    condition: and(succeeded(), eq(variables['isMain'], false))
+#     condition: and(succeeded(), eq(variables['isMain'], false))
+    condition: |
+      or(
+      and(succeeded(), eq(variables['isMain'], true), eq('${{ parameters.overrideAction }}', 'apply')),
+      and(succeeded(), eq(variables['isMain'], true), eq(variables['isAutoTriggered'], true))
+      )
+
     displayName: Terraform install (tfenv)
     inputs:
       script: echo hello
