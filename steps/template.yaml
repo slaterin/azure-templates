@@ -3,7 +3,7 @@ steps:
   - checkout: azure-templates
 
   - task: Bash@3
-    condition: and(succeeded(), eq(variables['isMain'], true))
+    condition: and(succeeded(), eq(variables['isMain'], false))
     displayName: Terraform install (tfenv)
     inputs:
       script: echo hello
