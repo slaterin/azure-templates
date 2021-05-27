@@ -5,7 +5,10 @@ parameters:
       - plan
       - apply
       - destroy
-      
+
+  - name: planCommandOptions
+    default: ''
+
 steps:
   - checkout: self
   - checkout: azure-templates
@@ -20,5 +23,7 @@ steps:
 
     displayName: Terraform install (tfenv)
     inputs:
-      script: echo hello
+      script: echo hello: $PARAM
       targetType: inline
+    env:
+      PARAM: ${{ parameters.planCommandOptions }}
