@@ -23,7 +23,7 @@ steps:
 
     displayName: Terraform install (tfenv)
     inputs:
-      script: echo hello: $PARAM
+      script: "echo hello: $PARAM"
       targetType: inline
     env:
       PARAM: ${{ parameters.planCommandOptions }}
